@@ -47,7 +47,8 @@ export class ProductController {
   }
 
   @Delete(':id')
-  deleteProduct(@Param('id') id: string) {
+  // Aquí está la corrección: Se añade el tipo de retorno para evitar el error TS2742
+  deleteProduct(@Param('id') id: string): Promise<{ acknowledged: boolean; deletedCount: number }> {
     return this.productService.delete(id);
   }
 }
