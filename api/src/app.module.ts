@@ -14,8 +14,7 @@ import { ConfigModule } from '@nestjs/config';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    // Eliminamos autoSelectFamily. La conexión se hará con la URI de entorno.
-    MongooseModule.forRoot(process.env.MONGODB_URI),
+    MongooseModule.forRoot(process.env.MONGODB_URI), // Sin opciones extra
     ProductModule,
     UserModule,
     AuthModule,
