@@ -14,10 +14,8 @@ import { ConfigModule } from '@nestjs/config';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    // Aquí está la corrección: Usar la variable de entorno de Render en lugar de localhost
-    MongooseModule.forRoot(process.env.MONGODB_URI, {
-      autoSelectFamily: false, // Evita problemas de red (IPv6) en Render
-    }),
+    // Eliminamos autoSelectFamily. La conexión se hará con la URI de entorno.
+    MongooseModule.forRoot(process.env.MONGODB_URI),
     ProductModule,
     UserModule,
     AuthModule,
