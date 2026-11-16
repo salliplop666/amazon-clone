@@ -14,7 +14,10 @@ import { ConfigModule } from '@nestjs/config';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    MongooseModule.forRoot('mongodb://localhost:27017/amazon'),
+    // Aquí está la corrección: Usar la variable de entorno de Render en lugar de localhost
+    MongooseModule.forRoot(process.env.MONGODB_URI, {
+      autoSelectFamily: false, // Evita problemas de red (IPv6) en Render
+    }),
     ProductModule,
     UserModule,
     AuthModule,
